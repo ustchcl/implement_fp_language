@@ -1,0 +1,23 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2017.8.8)  4 SEP 2017 19:35
+entering extended mode
+**pdflatex
+(C:\CTEX\MiKTeX\tex\latex\tools\.tex
+LaTeX2e <2016/03/31>
+Babel <3.9q> and hyphenation patterns for 1 language(s) loaded.
+File ignored)
+*
+! Emergency stop.
+<*> pdflatex
+            
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 6 strings out of 495237
+ 147 string characters out of 3182728
+ 44792 words of memory out of 3000000
+ 3387 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 5i,0n,1p,89b,8s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

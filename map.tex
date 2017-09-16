@@ -1,0 +1,204 @@
+\documentclass [11pt, a4paper]{article}
+\usepackage{CJK}
+\usepackage{xcolor}
+\usepackage{ulem}
+\begin{document}
+\begin{CJK*}{GBK}{song}
+\title{地图模块优化}
+\author{轰}
+\maketitle
+\section{目标}
+\begin{itemize}
+    \item 减少内存使用 用时加载，用后销毁
+    \item 不加载未使用的地图资源
+\end{itemize}
+\section{方案}
+\subsection{地图加载}
+\begin{itemize}
+    \item 维护一定量的地图块，人物在移动时，通过设置地图块的坐标，反复利用地图块。
+    \item 当前地图的地图块在使用过，当前不再使用后则设置有效期，过了有效期删除之。
+    再次使用时刷新有效期。
+    \item 切换地图时，清除上一地图的所有地图块。
+\end{itemize}
+\subsection{地图块}
+\begin{itemize}
+    \item 地图块大小 256x256
+    \item 手机屏幕大小 1366?x768
+\end{itemize}
+由于
+\begin{displaymath}
+    768 = 3 \times 256 \ \ \ \ 1366\div 256 = 5.336
+\end{displaymath}
+所以需要维护一个 4x7 的地图矩阵。如下图：
+\newpage
+\begin{tabular}{|p{0.6cm}|p{0.6cm}|p{0.6cm}|p{0.6cm}|}
+    \hline
+    1&2&3&4 \\
+    &&& \\
+    \hline
+    &&& \\
+    &&& \\
+    \hline
+    &&& \\
+    &&& \\
+    \hline
+    &&& \\
+    &&& \\
+    \hline
+    &&& \\
+    &&& \\
+    \hline
+    &&& \\
+    &&& \\
+    \hline
+    &&& \\
+    &&& \\
+    \hline
+    &&& \\
+    &&& \\
+    \hline
+\end{tabular}
+\newline
+\newline
+\newline
+如果地图块不再这28个地图块中，地图块则不显示，即\texttt{visible = false}. 
+\begin{verbatim}
+    if (mapBlock4.x + 256 >= 768) { //
+        mapBlock1.x = 768;
+        let resource = mapBlock1.resource;
+        mapBlock1.resource = "next_image_resource";
+        
+        // 
+        ResourceManager.setValidity(resource);
+    }
+\end{verbatim}
+
+\section{实现}
+\subsection{有效期管理}
+准备回收的地图块，再次使用的使用从resourcess中删除
+\begin{verbatim}
+    class ResourceManager {
+        public resources = {};
+        public timeRange = 25;
+        public timer: egret.Timer = new egret.Timer(1000, -1);
+
+        public setValidity(resourceName: string) {
+            this.resources[resourceName] = this.timeRange;
+        }
+
+        public update() {
+            for (let key in this.resources) {
+                this.resources[key] --;
+                if (value <= 0) {
+                    this.destroy(key);
+                }
+            }
+        }
+
+        public destroy(resourceName: string) {
+
+        }
+
+    
+    }
+\end{verbatim}
+
+\subsection{地图切换}
+\begin{displaymath}
+    Map_a \rightarrow Map_b
+\end{displaymath}
+
+\begin{verbatim}
+    init_map(mapId: number) {
+        // 初始化地图，此时上一个地图里面的资源会进入resources
+        // 然后再调用destroyMap
+    }
+
+    destroyMap(mapA) {
+        for (let resourceName of mapA) {
+            if (resources[resourceName]) {
+                destroy(resourceName);
+                resources[resourceName] = null;
+                delete resources[resourceName];
+            }
+        }
+    }
+\end{verbatim}
+
+\subsection{地图初始化}
+\begin{verbatim}
+    for (let i = 0; i < 7; ++i) {
+        for (let j = 0; j < 4; ++j) {
+            init_map_block(i, j);
+        }
+    }
+
+    init_map_block(i, j) {
+        let image = getImage(i, j);
+        image.source = getResource(i, j); //若地图块不存在返回""
+    }
+\end{verbatim}
+\subsection{新进入一个地图的初始化}
+\begin{itemize}
+    \item 地图的初始化位置为 \textbf{\texttt{initialX initialY}}
+    \item 地图大小为 \textbf{\texttt{width height}}
+    \item 地图块 \textbf{\texttt{row col}}
+\end{itemize}
+
+\begin{verbatim}
+    > Input: initialX initialY width height row col
+
+    for (let i = 0; i < row; ++i) {
+        for (let j = 0; j < col; ++j) {
+            if (visibleTest(i, j)) {
+                let image = getAvailabelImage();
+                image.x = 256 * j;
+                image.y = 256 * i;
+                image.visible = false;
+                image.source = getResource(i, j);
+                usingBlocks.push(image);
+                this.addChild(bitmap);
+            }
+        }
+    }
+
+    public visibleTest(i, j): boolean {
+        let x = 256 * j + mapImage.x;
+        let y = 256 * i + mapImage.y;
+        let stageHeight = CommonUtils.getStageHeight();
+        let stageWidth = CommonUtils.getStageWidth();
+        if (x > -256 && x < stageWidth + 256 &&
+            y > -256 && y < stageHeight + 256) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+\end{verbatim}
+\begin{displaymath}
+    x, y = MapBlock's\ Location
+\end{displaymath}
+$x = 256 \times n$, 其中$n$是正整数。
+\newline $y = 256 \times m$, 其中$m$是正整数。
+
+\begin{displaymath}
+    MapBlocks(4\times 7) \left\{ \begin{array}{ll}
+    using & \textrm{正在使用的地图块}\\
+    available & \textrm{可用的地图块}
+    \end{array} \right.
+\end{displaymath}
+
+\subsection{地图的移动}
+\begin{itemize}
+    \item 需要维护一个坐标是否有地图块的映射 $f: location\rightarrow boolean$
+    \item 地图初始化，初始化$f$
+\end{itemize}
+当地图移动时，可以知道需要隐藏的地图块 \texttt{blocks}，移除相应地图块，利用$f$标记
+该坐标是否有地图块。初始化地图时候，可以标记已经现有的地图快。
+
+\subsection{地图块判定}
+如何判断一个地图块是否还在使用？
+
+
+\end{CJK*}
+\end{document}

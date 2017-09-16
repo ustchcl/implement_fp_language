@@ -1,0 +1,72 @@
+\documentclass [11pt, a4paper]{article}
+    \usepackage{CJK}
+    \usepackage{xcolor}
+    \usepackage{ulem}
+    \usepackage{enumerate}
+    \begin{document}
+    \begin{CJK*}{UTF8}{song}
+    \title{Notes}
+    \author{Hong}
+    \maketitle
+        \section{手机类型}
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            编号 & 手机类型 & 内存 & 浏览器 \\
+            \hline 
+            1 & MEIZU & 1.8G & UC \\
+            \hline 
+            2 & HUAWEI & 1.8G & UC \\
+            \hline
+            
+        \end{tabular}
+        \section{内存状况}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline 
+            手机编号 & 游戏版本 & 进入游戏内存(\%) & 不操作稳定后 & 打开各种界面后 & 战斗后 \\
+            \hline
+            1 & Map & 68 & 74-76 & 87 &  87-89 \\
+            \hline
+            2 & Map & 68 &  70 & $\simeq 87$ (闪退) & \\
+            \hline 
+            \hline 
+            1 & DEV & 75 & 77 & 85-86 & 88 \\
+            \hline 
+            2 & DEV & 70 & 72 & 84 & $\geq 87$ \\
+            \hline 
+            \hline 
+            1 & DEV2 & 75 & 77 & 85-86 & 88 \\
+            \hline 
+            2 & DEV2 & 70 & 72 & 84 & $\geq 87$ \\
+            \hline
+
+        \end{tabular}
+
+        \subsection{\textbf{dispose 没有起效}}
+        \begin{LARGE}
+            DESTROY 一个用于设置source的资源会失败！
+        \end{LARGE}
+        \newline在设置的资源不再使用后， 资源是否会被释放？ 如何释放？
+
+        \begin{verbatim}
+MapBlocks : eui.Image;
+eui.Image有一个属性 texture, 这个纹理是存在内存中的一个对象，是相应的图片解析后的纹理。
+texture : egret.texture
+        \end{verbatim}
+
+        \flushleft
+        \newtheorem{mur}{Texture}[section]
+        \begin{mur}
+            纹理类是对不同平台不同的图片资源的封装在HTML5中，资源是一个HTMLElement对象在OpenGL / WebGL中，资源是一个提交GPU后获取的纹理idTexture类封装了这些底层实现的细节，开发者只需要关心接口即可
+        \end{mur}
+    
+        
+    \subsection{面板纹理集清除方式}
+    \begin{enumerate}
+    \item 在\texttt{removePopup}处, \texttt{destroRes(panel\_json)}
+    \item 每次打开面板，必须重新新建一个 \texttt{panel}
+    \item 所以上一次打开的面板在关闭时候，必须必须清理干净。否则：内存泄露。
+    \end{enumerate}
+
+        
+    \end{CJK*}
+    \end{document}

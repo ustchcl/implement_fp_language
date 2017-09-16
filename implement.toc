@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Preface}{2}
+\contentsline {subsection}{\numberline {1.1}Overview of the implementations}{2}
+\contentsline {section}{\numberline {2}Chaptter 1: The Core Language}{3}
+\contentsline {subsection}{\numberline {2.1}Overview of the core language}{3}
+\contentsline {subsubsection}{\numberline {2.1.1}Local definitions}{3}
+\contentsline {subsubsection}{\numberline {2.1.2}Structured data types}{3}
+\contentsline {subsubsection}{\numberline {2.1.3}Representing constructors}{4}
+\contentsline {subsubsection}{\numberline {2.1.4} \texttt {case} expressions}{4}
+\contentsline {subsection}{\numberline {2.2}Syntax of the Core Language}{4}
+\contentsline {subsection}{\numberline {2.3}Structured Data Types}{5}
+\contentsline {subsection}{\numberline {2.4}A parser for the Core Language}{7}

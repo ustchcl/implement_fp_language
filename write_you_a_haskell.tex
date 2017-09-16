@@ -1,0 +1,199 @@
+% write you a haskell
+
+\documentclass[11pt, twoside, a4paper]{article}
+\author{Hong}
+\usepackage{makeidx}
+\begin{document}
+\index{hello}
+Small is beautiful
+% \hyphenation{word list}
+\newline
+\today
+\newline 
+\TeX
+\newline
+\LaTeX 
+\newline
+\LaTeXe
+\newline ``Please press the `x' key''
+yes---or no? pages 13--54 in-law
+\newline 
+\newline http://www.rich.edu/\~{}bush 
+\newline http://www.clever.edu/$\sim$demo
+\newline Not shelfful\\
+but shelf\mbox{}ful
+Not shelfful
+but shelfful\\
+\underline{important} \\
+FootNotes\footnote{TEST} are often used by people.\\
+\emph{text}
+
+% flushleft
+% center
+\begin{flushright}
+This text is right-\\aligned. \LaTeX{} is not trying to make each
+line the same length.
+\end{flushright}
+
+A typographical rule of thumb
+for the line length is:
+\begin{quote}
+On average, no line should
+be longer than 66 characters.
+\end{quote}
+This is why \LaTeX{} pages have
+such large borders by default
+and also why multicolumn print
+is used in newspapers
+
+The \verb|\ldots| command \ldots
+\begin{verbatim}
+10 PRINT "HELLO WORLD ";
+20 GOTO 10
+\end{verbatim}
+
+\begin{verbatim*}
+    the starred version of
+    the verbatim
+    environment emphasizes
+    the spaces in the text
+\end{verbatim*}
+
+
+
+\newpage HHAS
+\begin{tabular}{|p{4.7cm}|}
+    \hline
+    Welcome to Boxy's paragraph.
+    We sincerely hope you'll
+    all enjoy the show.\\
+    \hline
+    \end{tabular}
+\newline ****************
+\newline ****************
+
+    \begin{tabular}{|r|l|}
+        \hline
+        7C0 & hexadecimal \\
+        3700 & octal \\ \cline{2-2}
+        11111000000 & binary \\
+        \hline \hline
+        1984 & decimal \\
+        \hline
+\end{tabular}
+
+Add $a$ squared and $b$ squared to get $c$ squared. Or, using
+a more mathematical approach:
+\begin{displaymath}
+        c^{2}=a^{2}+b^{2}
+\end{displaymath}
+or you can type less with:
+\[a+b=c\]
+
+\begin{equation} \label{eq:eps}
+    \epsilon > 0
+\end{equation}
+
+% From (\ref{eq:eps}), we gather
+% \ldots{}From \eqref{eq:eps} we
+% do the same.
+
+%inline
+$\lim_{n \to \infty}
+\sum_{k=1}^n \frac{1}{k^2}
+= \frac{\pi^2}{6}$
+
+\begin{displaymath}
+    \lim_{n \to \infty}
+    \sum_{k=1}^n \frac{1}{k^2}
+    = \frac{\pi^2}{6}
+\end{displaymath}
+
+
+\begin{equation}
+    a^x+y \neq a^{x+y}
+\end{equation}
+$a\,b\:c\;d\!e$
+
+\begin{displaymath}
+    \mathbf{X} =
+    \left( \begin{array}{ccc}
+    x_{11} & x_{12} & \ldots \\
+    x_{21} & x_{22} & \ldots \\
+    \vdots & \vdots & \ddots
+    \end{array} \right)
+\end{displaymath}
+
+\begin{displaymath}
+    y = \left\{ \begin{array}{ll}
+    a & \textrm{if $d>c$}\\
+    b+x & \textrm{in the morning}\\
+    l & \textrm{all day long}
+    \end{array} \right.
+\end{displaymath}
+
+\begin{displaymath}
+    \left(\begin{array}{c|c}
+    M & D \\
+    \hline
+    Z & Z
+    \end{array}\right)
+\end{displaymath}
+
+\begin{eqnarray}
+    f(x) & = & \cos x \\
+    f'(x) & = & -\sin x \\
+    \int_{0}^{x} f(y)dy &
+    = & \sin x
+\end{eqnarray}
+
+\begin{displaymath}
+    {}^{12}_{\phantom{1}6}\textrm{C}
+    \qquad \textrm{versus} \qquad
+    {}^{12}_{6}\textrm{C}
+\end{displaymath}
+
+\begin{displaymath}
+    \Gamma_{ij}^{\phantom{ij}k}
+    \qquad \textrm{versus} \qquad
+    \Gamma_{ij}^{k}
+\end{displaymath}
+
+% \theoremstyle{definition} \newtheorem{law}{Law}
+% \theoremstyle{plain} \newtheorem{jury}[law]{Jury}
+% \theoremstyle{remark} \newtheorem*{marg}{Margaret}
+% \begin{law} \label{law:box}
+% Don't hide in the witness box
+% \end{law}
+% \begin{jury}[The Twelve]
+% It could be you! So beware and
+% see law \ref{law:box}\end{jury}
+% \begin{marg}No, No, No\end{marg}
+
+\newpage
+\flushleft
+\newtheorem{mur}{Murphy}[section]
+\begin{mur}
+If there are two or more
+ways to do something, and
+one of those ways can result
+in a catastrophe, then
+someone will do it.
+\end{mur}
+
+% \b
+
+\begin{displaymath}
+    \mu, M \qquad \mathbf{P} \qquad
+    \mbox{\boldmath $\mu, M$}
+\end{displaymath}
+
+% % \begin{displaymath}
+% %     \xymatrix{
+% %     A \ar[d] \ar[dr] \ar[r] & B \\
+% %     D & C }
+% \end{displaymath}
+
+
+\end{document} 
+

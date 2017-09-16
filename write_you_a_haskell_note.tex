@@ -1,0 +1,23 @@
+\documentclass [12pt]{article}
+\title{Monads for functional programming}
+\author{Stephen Diehl}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents 
+\section{Introduction}
+\subsection{pure and impure?}
+
+\begin{tabular}{lll}
+    \hline
+    Pure & Miranda, Haskell & 1 \\
+    Impure & Scheme, Standard ML& 2 \\
+    \hline
+\end{tabular}
+\section{Monad Laws}
+\begin{verbatim}
+    1 Associative: 
+    2 m <*> (\a -> n <*> \b -> o)
+\end{verbatim}
+\section{Conclusion}
+\end{document}
